@@ -1,7 +1,7 @@
-"""Surro Python SDK — trust infrastructure for AI agents."""
+"""Avatron Python SDK — trust infrastructure for AI agents."""
 
-from .async_client import AsyncSurroClient
-from .client import SurroClient
+from .async_client import AsyncAvatronClient
+from .client import AvatronClient
 from .crypto import (
     compute_content_hash,
     verify_attestation_signature,
@@ -13,7 +13,7 @@ from .exceptions import (
     AuthorizationError,
     ConflictError,
     NotFoundError,
-    SurroError,
+    AvatronError,
     RateLimitError,
     ValidationError,
 )
@@ -54,10 +54,10 @@ from .types import (
 
 __all__ = [
     # Clients
-    "SurroClient",
-    "AsyncSurroClient",
+    "AvatronClient",
+    "AsyncAvatronClient",
     # Exceptions
-    "SurroError",
+    "AvatronError",
     "AuthenticationError",
     "AuthorizationError",
     "NotFoundError",

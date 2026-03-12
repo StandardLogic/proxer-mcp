@@ -1,4 +1,4 @@
-"""Synchronous Surro client using httpx."""
+"""Synchronous Avatron client using httpx."""
 
 from __future__ import annotations
 
@@ -44,12 +44,12 @@ from .types import (
 )
 
 
-class SurroClient:
-    """Synchronous client for the Surro REST API.
+class AvatronClient:
+    """Synchronous client for the Avatron REST API.
 
     Args:
-        api_key: Surro API key (e.g. ``uni_live_xxx``).
-        base_url: API base URL. Defaults to ``https://surro.io``.
+        api_key: Avatron API key (e.g. ``uni_live_xxx``).
+        base_url: API base URL. Defaults to ``https://avatron.co``.
         timeout: Request timeout in seconds. Defaults to 30.
     """
 
@@ -72,7 +72,7 @@ class SurroClient:
         """Close the underlying HTTP client."""
         self._client.close()
 
-    def __enter__(self) -> SurroClient:
+    def __enter__(self) -> AvatronClient:
         return self
 
     def __exit__(self, *args: Any) -> None:

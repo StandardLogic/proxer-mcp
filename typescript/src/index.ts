@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 /**
- * Surro Management MCP Server
+ * Avatron Management MCP Server
  *
- * A thin adapter that exposes Surro Dashboard operations as MCP tools.
+ * A thin adapter that exposes Avatron Dashboard operations as MCP tools.
  * Enables developers to manage issuers, passports, and gates directly from Claude.
  *
  * Usage:
- *   SURRO_API_KEY=sk_xxx npx surro-mcp
- *   SURRO_API_KEY=uni_xxx npx surro-mcp
+ *   AVATRON_API_KEY=sk_xxx npx avatron-mcp
+ *   AVATRON_API_KEY=uni_xxx npx avatron-mcp
  */
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -22,32 +22,32 @@ import { ApiClient } from './api-client.js';
 import { allTools, handleToolCall } from './tools/index.js';
 
 // Configuration from environment
-const SURRO_API_URL = process.env.SURRO_API_URL || 'https://surro.io';
-const SURRO_API_KEY = process.env.SURRO_API_KEY;
+const AVATRON_API_URL = process.env.AVATRON_API_URL || 'https://avatron.co';
+const AVATRON_API_KEY = process.env.AVATRON_API_KEY;
 
 async function main() {
   // Validate configuration
-  if (!SURRO_API_KEY) {
-    console.error('Error: SURRO_API_KEY environment variable is required');
+  if (!AVATRON_API_KEY) {
+    console.error('Error: AVATRON_API_KEY environment variable is required');
     console.error('');
     console.error('Usage:');
-    console.error('  SURRO_API_KEY=sk_xxx npx surro-mcp');
+    console.error('  AVATRON_API_KEY=sk_xxx npx avatron-mcp');
     console.error('');
     console.error('Or for local development:');
-    console.error('  SURRO_API_KEY=uni_xxx npx surro-mcp');
+    console.error('  AVATRON_API_KEY=uni_xxx npx avatron-mcp');
     process.exit(1);
   }
 
   // Initialize API client
   const api = new ApiClient({
-    baseUrl: SURRO_API_URL,
-    apiKey: SURRO_API_KEY,
+    baseUrl: AVATRON_API_URL,
+    apiKey: AVATRON_API_KEY,
   });
 
   // Create MCP server
   const server = new Server(
     {
-      name: 'surro-manage',
+      name: 'avatron-manage',
       version: '1.1.0',
     },
     {
@@ -97,9 +97,9 @@ async function main() {
   await server.connect(transport);
 
   // Log to stderr (stdout is reserved for MCP protocol)
-  console.error(`Surro Management MCP Server started`);
-  console.error(`  API URL: ${SURRO_API_URL}`);
-  console.error(`  API Key: ${SURRO_API_KEY.slice(0, 10)}...`);
+  console.error(`Avatron Management MCP Server started`);
+  console.error(`  API URL: ${AVATRON_API_URL}`);
+  console.error(`  API Key: ${AVATRON_API_KEY.slice(0, 10)}...`);
 }
 
 main().catch((error) => {

@@ -1,20 +1,20 @@
-# surro-mcp
+# avatron-mcp
 
-<!-- mcp-name: io.github.standardlogic/surro-manage -->
+<!-- mcp-name: io.github.standardlogic/avatron-manage -->
 
-[![npm version](https://img.shields.io/npm/v/surro-mcp)](https://www.npmjs.com/package/surro-mcp)
+[![npm version](https://img.shields.io/npm/v/avatron-mcp)](https://www.npmjs.com/package/avatron-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![MCP Compatible](https://img.shields.io/badge/MCP-compatible-green)](https://modelcontextprotocol.io)
 
 **The trust layer for AI agents.** Gates protect your tools. Passports authorize your agents. Everything verified locally.
 
-MCP server for managing the [Surro](https://surro.io) trust infrastructure — gates, passports, catalogs, constraints, enforcement, commerce, and billing — directly from Claude, Cursor, or any MCP client.
+MCP server for managing the [Avatron](https://avatron.co) trust infrastructure — gates, passports, catalogs, constraints, enforcement, commerce, and billing — directly from Claude, Cursor, or any MCP client.
 
 ---
 
-## What is Surro?
+## What is Avatron?
 
-[Surro](https://surro.io) is an open protocol that adds a lightweight trust layer for the agentic web. It has two sides:
+[Avatron](https://avatron.co) is an open protocol that adds a lightweight trust layer for the agentic web. It has two sides:
 
 **Gates** protect your tools, APIs, and MCP servers. A Gate is a verification checkpoint — you define a permission catalog of what's allowed, and incoming agent requests are checked against it locally, with no network round-trip. Every decision produces a signed attestation for a tamper-evident audit trail.
 
@@ -22,13 +22,13 @@ MCP server for managing the [Surro](https://surro.io) trust infrastructure — g
 
 This MCP server lets you manage both sides conversationally from any MCP client.
 
-> [Protocol specification](https://github.com/uniplexprotocol/uniplex) · [Documentation](https://surro.io) · [MCP SDK (TypeScript)](https://www.npmjs.com/package/surro-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/surro-mcp-sdk/)
+> [Protocol specification](https://github.com/uniplexprotocol/uniplex) · [Documentation](https://avatron.co) · [MCP SDK (TypeScript)](https://www.npmjs.com/package/avatron-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/avatron-mcp-sdk/)
 
 ---
 
 ## Prerequisites
 
-- A **Surro account** — sign up at the [Surro Dashboard](https://surro.io)
+- A **Avatron account** — sign up at the [Avatron Dashboard](https://avatron.co)
 - **Claude Desktop**, **Claude Code**, **Cursor**, or any MCP-compatible client
 - An **API key** — generate one from the dashboard
 
@@ -38,7 +38,7 @@ This MCP server lets you manage both sides conversationally from any MCP client.
 
 ### Connect with API Key (Claude Desktop, any MCP client)
 
-Add Surro to your MCP configuration:
+Add Avatron to your MCP configuration:
 
 - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
@@ -46,11 +46,11 @@ Add Surro to your MCP configuration:
 ```json
 {
   "mcpServers": {
-    "surro": {
+    "avatron": {
       "command": "npx",
-      "args": ["surro-mcp"],
+      "args": ["avatron-mcp"],
       "env": {
-        "SURRO_API_KEY": "uni_live_xxxxxxxx"
+        "AVATRON_API_KEY": "uni_live_xxxxxxxx"
       }
     }
   }
@@ -60,10 +60,10 @@ Add Surro to your MCP configuration:
 ### Add to Claude Code
 
 ```bash
-claude mcp add surro \
+claude mcp add avatron \
   --scope user \
-  -- npx surro-mcp \
-  --env SURRO_API_KEY=uni_live_xxxxxxxx
+  -- npx avatron-mcp \
+  --env AVATRON_API_KEY=uni_live_xxxxxxxx
 ```
 
 Restart your client and you're ready to go.
@@ -178,8 +178,8 @@ Restart your client and you're ready to go.
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `SURRO_API_KEY` | Yes | — | Your Surro API key (`uni_live_*` or `uni_test_*`) |
-| `SURRO_API_URL` | No | `https://surro.io` | API base URL (override for local dev) |
+| `AVATRON_API_KEY` | Yes | — | Your Avatron API key (`uni_live_*` or `uni_test_*`) |
+| `AVATRON_API_URL` | No | `https://avatron.co` | API base URL (override for local dev) |
 
 ---
 
@@ -190,12 +190,12 @@ For local testing against a development dashboard:
 ```json
 {
   "mcpServers": {
-    "surro": {
+    "avatron": {
       "command": "npx",
-      "args": ["surro-mcp"],
+      "args": ["avatron-mcp"],
       "env": {
-        "SURRO_API_URL": "http://localhost:3000",
-        "SURRO_API_KEY": "uni_test_xxxxxxxx"
+        "AVATRON_API_URL": "http://localhost:3000",
+        "AVATRON_API_KEY": "uni_test_xxxxxxxx"
       }
     }
   }
@@ -213,18 +213,18 @@ Make sure you've restarted Claude Desktop after editing the config file. Check f
 Verify your key starts with `uni_live_` (production) or `uni_test_` (development) and hasn't been revoked.
 
 **Tools aren't showing up**
-Run `npx surro-mcp` directly in your terminal to check for startup errors. Ensure Node.js 18+.
+Run `npx avatron-mcp` directly in your terminal to check for startup errors. Ensure Node.js 18+.
 
 ---
 
 ## Learn More
 
-- [Surro Dashboard](https://surro.io) — Create your account and manage gates, passports, and API keys
+- [Avatron Dashboard](https://avatron.co) — Create your account and manage gates, passports, and API keys
 - [Protocol Specification](https://github.com/uniplexprotocol/uniplex)
-- [Documentation & Guides](https://surro.io)
-- [MCP SDK (TypeScript)](https://www.npmjs.com/package/surro-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/surro-mcp-sdk/)
-- [Management SDK (Python)](https://pypi.org/project/surro-mcp/)
-- [Discussions](https://github.com/StandardLogic/surro-mcp/discussions) — Questions and ideas
+- [Documentation & Guides](https://avatron.co)
+- [MCP SDK (TypeScript)](https://www.npmjs.com/package/avatron-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/avatron-mcp-sdk/)
+- [Management SDK (Python)](https://pypi.org/project/avatron-mcp/)
+- [Discussions](https://github.com/StandardLogic/avatron-mcp/discussions) — Questions and ideas
 
 ---
 

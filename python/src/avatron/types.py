@@ -1,4 +1,4 @@
-"""Pydantic v2 models for the Surro API."""
+"""Pydantic v2 models for the Avatron API."""
 
 from __future__ import annotations
 

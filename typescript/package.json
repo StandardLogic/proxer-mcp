@@ -1,11 +1,11 @@
 {
-  "name": "surro-mcp",
+  "name": "avatron-mcp",
   "version": "1.1.0",
-  "description": "Surro Management MCP Server - Manage issuers, passports, and gates from Claude",
+  "description": "Avatron Management MCP Server - Manage issuers, passports, and gates from Claude",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "surro-mcp": "./dist/index.js"
+    "avatron-mcp": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -30,7 +30,7 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "surro",
+    "avatron",
     "ai-agents",
     "permissions",
     "passports",

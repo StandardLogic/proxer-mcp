@@ -1,12 +1,12 @@
-"""Typed exceptions for the Surro SDK."""
+"""Typed exceptions for the Avatron SDK."""
 
 from __future__ import annotations
 
 from typing import Any, Optional
 
 
-class SurroError(Exception):
-    """Base exception for all Surro SDK errors."""
+class AvatronError(Exception):
+    """Base exception for all Avatron SDK errors."""
 
     def __init__(
         self,
@@ -19,19 +19,19 @@ class SurroError(Exception):
         self.body = body
 
 
-class AuthenticationError(SurroError):
+class AuthenticationError(AvatronError):
     """Raised when the API key is invalid or missing (HTTP 401)."""
 
 
-class AuthorizationError(SurroError):
+class AuthorizationError(AvatronError):
     """Raised when the API key lacks required scopes (HTTP 403)."""
 
 
-class NotFoundError(SurroError):
+class NotFoundError(AvatronError):
     """Raised when the requested resource does not exist (HTTP 404)."""
 
 
-class RateLimitError(SurroError):
+class RateLimitError(AvatronError):
     """Raised when rate limits are exceeded (HTTP 429)."""
 
     def __init__(
@@ -44,9 +44,9 @@ class RateLimitError(SurroError):
         self.retry_after = retry_after
 
 
-class ValidationError(SurroError):
+class ValidationError(AvatronError):
     """Raised when request parameters fail validation (HTTP 400/422)."""
 
 
-class ConflictError(SurroError):
+class ConflictError(AvatronError):
     """Raised on resource conflicts like duplicate nonces (HTTP 409)."""

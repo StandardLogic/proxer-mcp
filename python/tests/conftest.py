@@ -3,23 +3,23 @@
 import pytest
 import respx
 
-from surro.client import SurroClient
-from surro.async_client import AsyncSurroClient
+from avatron.client import AvatronClient
+from avatron.async_client import AsyncAvatronClient
 
-BASE_URL = "https://surro.io"
+BASE_URL = "https://avatron.co"
 API_KEY = "uni_test_xxx"
 
 
 @pytest.fixture
 def client():
-    c = SurroClient(api_key=API_KEY, base_url=BASE_URL)
+    c = AvatronClient(api_key=API_KEY, base_url=BASE_URL)
     yield c
     c.close()
 
 
 @pytest.fixture
 async def async_client():
-    c = AsyncSurroClient(api_key=API_KEY, base_url=BASE_URL)
+    c = AsyncAvatronClient(api_key=API_KEY, base_url=BASE_URL)
     yield c
     await c.close()
 

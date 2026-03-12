@@ -1,5 +1,5 @@
 /**
- * API Client for Surro Dashboard REST API
+ * API Client for Avatron Dashboard REST API
  *
  * This is a thin wrapper that translates MCP tool calls into REST requests.
  */

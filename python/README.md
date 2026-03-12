@@ -1,17 +1,17 @@
-# surro-mcp
+# avatron-mcp
 
-[![PyPI version](https://img.shields.io/pypi/v/surro-mcp)](https://pypi.org/project/surro-mcp/)
+[![PyPI version](https://img.shields.io/pypi/v/avatron-mcp)](https://pypi.org/project/avatron-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **The trust layer for AI agents.** Gates protect your tools. Passports authorize your agents. Everything verified locally.
 
-Python client for the [Surro](https://surro.io) REST API. Manage gates, passports, attestations, constraints, catalogs, enforcement, commerce, and billing programmatically.
+Python client for the [Avatron](https://avatron.co) REST API. Manage gates, passports, attestations, constraints, catalogs, enforcement, commerce, and billing programmatically.
 
 ---
 
-## What is Surro?
+## What is Avatron?
 
-[Surro](https://surro.io) is an open protocol that adds a lightweight trust layer for the agentic web. It has two sides:
+[Avatron](https://avatron.co) is an open protocol that adds a lightweight trust layer for the agentic web. It has two sides:
 
 **Gates** protect your tools, APIs, and MCP servers. A Gate is a verification checkpoint — you define a permission catalog of what's allowed, and incoming agent requests are checked against it locally, with no network round-trip. Every decision produces a signed attestation for a tamper-evident audit trail.
 
@@ -23,7 +23,7 @@ This SDK lets you manage both sides — gates, passports, attestations, constrai
 
 ## Prerequisites
 
-- A **Surro account** — sign up at the [Surro Dashboard](https://surro.io)
+- A **Avatron account** — sign up at the [Avatron Dashboard](https://avatron.co)
 - An **API key** — generate one from the dashboard
 - **Python 3.9+**
 
@@ -32,7 +32,7 @@ This SDK lets you manage both sides — gates, passports, attestations, constrai
 ## Installation
 
 ```bash
-pip install surro-mcp
+pip install avatron-mcp
 ```
 
 ---
@@ -40,9 +40,9 @@ pip install surro-mcp
 ## Quick Start
 
 ```python
-from surro import SurroClient
+from avatron import AvatronClient
 
-client = SurroClient(api_key="uni_live_xxxxxxxx")
+client = AvatronClient(api_key="uni_live_xxxxxxxx")
 
 # Create a gate
 gate = client.create_gate(name="My Service", gate_id="gate_my-service")
@@ -79,10 +79,10 @@ client.close()
 
 ```python
 import asyncio
-from surro import AsyncSurroClient
+from avatron import AsyncAvatronClient
 
 async def main():
-    async with AsyncSurroClient(api_key="uni_live_xxxxxxxx") as client:
+    async with AsyncAvatronClient(api_key="uni_live_xxxxxxxx") as client:
         gates = await client.list_gates()
         print(f"Found {len(gates)} gates")
 
@@ -98,7 +98,7 @@ asyncio.run(main())
 Both clients support context managers for automatic cleanup:
 
 ```python
-with SurroClient(api_key="uni_live_xxxxxxxx") as client:
+with AvatronClient(api_key="uni_live_xxxxxxxx") as client:
     gates = client.list_gates()
 ```
 
@@ -225,7 +225,7 @@ client.revoke_api_key("key_xxx")
 The SDK includes local verification utilities for Ed25519 signatures and RFC 8785 content hashing:
 
 ```python
-from surro import verify_attestation_signature, verify_content_hash, compute_content_hash
+from avatron import verify_attestation_signature, verify_content_hash, compute_content_hash
 
 # Verify an attestation signature locally
 valid = verify_attestation_signature(
@@ -248,8 +248,8 @@ hash_hex = compute_content_hash({"key": "value"})
 All API errors are raised as typed exceptions:
 
 ```python
-from surro import (
-    SurroError,
+from avatron import (
+    AvatronError,
     AuthenticationError,
     AuthorizationError,
     NotFoundError,
@@ -265,7 +265,7 @@ except NotFoundError as e:
     print(f"Status: {e.status_code}")  # 404
 except RateLimitError as e:
     print(f"Rate limited, retry after: {e.retry_after}s")
-except SurroError as e:
+except AvatronError as e:
     print(f"API error: {e} (HTTP {e.status_code})")
 ```
 
@@ -277,7 +277,7 @@ except SurroError as e:
 | `ConflictError` | 409 |
 | `ValidationError` | 400, 422 |
 | `RateLimitError` | 429 |
-| `SurroError` | All other errors |
+| `AvatronError` | All other errors |
 
 ---
 
@@ -285,13 +285,13 @@ except SurroError as e:
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `SURRO_API_KEY` | Yes | — | Your Surro API key (`uni_live_*` or `uni_test_*`) |
-| `SURRO_API_URL` | No | `https://surro.io` | API base URL (override for local dev) |
+| `AVATRON_API_KEY` | Yes | — | Your Avatron API key (`uni_live_*` or `uni_test_*`) |
+| `AVATRON_API_URL` | No | `https://avatron.co` | API base URL (override for local dev) |
 
 You can also pass these directly to the client:
 
 ```python
-client = SurroClient(api_key="uni_live_xxx", base_url="http://localhost:3000")
+client = AvatronClient(api_key="uni_live_xxx", base_url="http://localhost:3000")
 ```
 
 ---
@@ -301,7 +301,7 @@ client = SurroClient(api_key="uni_live_xxx", base_url="http://localhost:3000")
 To test against a local development dashboard:
 
 ```python
-client = SurroClient(
+client = AvatronClient(
     api_key="uni_test_xxxxxxxx",
     base_url="http://localhost:3000",
 )
@@ -310,8 +310,8 @@ client = SurroClient(
 To install the SDK in editable mode from source:
 
 ```bash
-git clone https://github.com/StandardLogic/surro-mcp.git
-cd surro-mcp/python
+git clone https://github.com/StandardLogic/avatron-mcp.git
+cd avatron-mcp/python
 pip install -e ".[dev]"
 ```
 
@@ -319,12 +319,12 @@ pip install -e ".[dev]"
 
 ## Learn More
 
-- [Surro Dashboard](https://surro.io) — Create your account and manage gates, passports, and API keys
-- [Documentation & Guides](https://surro.io)
+- [Avatron Dashboard](https://avatron.co) — Create your account and manage gates, passports, and API keys
+- [Documentation & Guides](https://avatron.co)
 - [Protocol Specification](https://github.com/uniplexprotocol/uniplex)
-- [MCP SDK (TypeScript)](https://www.npmjs.com/package/surro-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/surro-mcp-sdk/)
-- [Management MCP Server (TypeScript)](https://www.npmjs.com/package/surro-mcp)
-- [Discussions](https://github.com/StandardLogic/surro-mcp/discussions) — Questions and ideas
+- [MCP SDK (TypeScript)](https://www.npmjs.com/package/avatron-mcp-sdk) · [MCP SDK (Python)](https://pypi.org/project/avatron-mcp-sdk/)
+- [Management MCP Server (TypeScript)](https://www.npmjs.com/package/avatron-mcp)
+- [Discussions](https://github.com/StandardLogic/avatron-mcp/discussions) — Questions and ideas
 
 ---
 

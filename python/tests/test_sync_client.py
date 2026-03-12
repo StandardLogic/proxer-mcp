@@ -1,4 +1,4 @@
-"""Comprehensive tests for the synchronous SurroClient."""
+"""Comprehensive tests for the synchronous AvatronClient."""
 
 import json
 
@@ -6,18 +6,18 @@ import httpx
 import pytest
 import respx
 
-from surro.client import SurroClient
-from surro.exceptions import (
+from avatron.client import AvatronClient
+from avatron.exceptions import (
     AuthenticationError,
     AuthorizationError,
     ConflictError,
     NotFoundError,
-    SurroError,
+    AvatronError,
     RateLimitError,
     ValidationError,
 )
 
-BASE_URL = "https://surro.io"
+BASE_URL = "https://avatron.co"
 API_KEY = "uni_test_xxx"
 
 
@@ -975,7 +975,7 @@ class TestErrorHandling:
         mock_api.get("/api/gates").mock(
             return_value=httpx.Response(500, json={"message": "Internal server error"})
         )
-        with pytest.raises(SurroError) as exc_info:
+        with pytest.raises(AvatronError) as exc_info:
             client.list_gates()
         assert exc_info.value.status_code == 500
 
@@ -992,7 +992,7 @@ class TestErrorHandling:
         mock_api.get("/api/gates").mock(
             return_value=httpx.Response(502, text="Bad Gateway")
         )
-        with pytest.raises(SurroError) as exc_info:
+        with pytest.raises(AvatronError) as exc_info:
             client.list_gates()
         assert exc_info.value.status_code == 502
 
@@ -1014,6 +1014,6 @@ class TestContextManager:
         mock_api.get("/api/gates").mock(
             return_value=httpx.Response(200, json=[])
         )
-        with SurroClient(api_key=API_KEY, base_url=BASE_URL) as client:
+        with AvatronClient(api_key=API_KEY, base_url=BASE_URL) as client:
             result = client.list_gates()
             assert result == []
